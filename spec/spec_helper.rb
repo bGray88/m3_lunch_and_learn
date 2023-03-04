@@ -15,7 +15,8 @@
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require 'simplecov'
-# require 'webmock/rspec'
+require 'webmock/rspec'
+require 'vcr'
 SimpleCov.start 'rails'
 SimpleCov.add_filter [
     'spec',
@@ -107,4 +108,13 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+end
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  config.hook_into :webmock
+  config.filter_sensitive_data('<APP_ID>') { ENV['APP_ID'] }
+  config.filter_sensitive_data('<APP_KEY>') { ENV['APP_KEY'] }
+  config.configure_rspec_metadata!
+  config.default_cassette_options = { re_record_interval: 259200 }
 end
