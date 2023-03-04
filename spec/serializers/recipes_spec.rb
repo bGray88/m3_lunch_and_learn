@@ -15,5 +15,8 @@ RSpec.describe 'Recipes Serializer' do
     expect(recipe.dig(:data, 0, :attributes, :country)).to be_a(String)
     expect(recipe.dig(:data, 0, :attributes)).to have_key(:image)
     expect(recipe.dig(:data, 0, :attributes, :image)).to be_a(String)
+    expect(recipe.dig(:data, 0, :attributes)).to have_key(:title)
+    expect(recipe.dig(:data, 0, :attributes)).to_not have_key(:dietLabels)
+    expect(recipe.dig(:data, 0, :attributes)).to_not have_key(:healthLabels)
   end
 end
