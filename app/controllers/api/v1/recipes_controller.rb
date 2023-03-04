@@ -1,9 +1,16 @@
 class Api::V1::RecipesController < ApplicationController
   def index
-    search_result = EdamamService.search_by_name(params[:search])
-
-    render json: RecipesSerializer.recipe(search_result, params[:search]) unless search_result[:hits].empty?
-    render json: CommonSerializer.empty if search_result[:hits].empty?
+    if params[:search]
+      country = params[:search]
+    else
+      country = CountriesSerializer.country(RestCountryFacade.random_country).dig(:data, :attributes, :name)
+    end
+    search_result = EdamamService.search_by_name(country)
     raise SearchError.new unless search_result
+    if search_result[:hits].empty?
+      render json: CommonSerializer.empty
+    else
+      render json: RecipesSerializer.recipe(search_result, country)
+    end
   end
 end
