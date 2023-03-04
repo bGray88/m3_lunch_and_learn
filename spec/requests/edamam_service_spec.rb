@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Edamam Service' do
   it 'calls the service' do
-    response = EdamamService.search('chicken').dig(:hits, 0)
+    response = EdamamService.search_by_name('thailand').dig(:hits, 0)
 
     expect(response).to be_a(Hash)
     expect(response).to have_key(:recipe)

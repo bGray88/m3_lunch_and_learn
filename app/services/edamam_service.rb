@@ -11,7 +11,7 @@ class EdamamService
     )
   end
 
-  def self.search(search_term)
+  def self.search_by_name(search_term)
     JSON.parse(conn.get { |req| req.params[:q] = search_term }.body, symbolize_names: true)
   end
 end
