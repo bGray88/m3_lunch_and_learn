@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Rest Country Facade' do
-  it 'can return a random country' do
+  it 'can return a random country', :vcr do
     country1 = RestCountryFacade.random_country
     country2 = RestCountryFacade.random_country
 

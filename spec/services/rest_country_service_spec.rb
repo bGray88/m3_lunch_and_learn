@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Rest Country Service' do
-  it 'can return values from API' do
+  it 'can return values from API', :vcr do
     countries = RestCountryService.all_countries
 
     expect(countries).to be_a(Array)

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Edamam Service' do
-  it 'calls the service' do
+  it 'calls the service', :vcr do
     response = EdamamService.search_by_name('thailand').dig(:hits, 0)
 
     expect(response).to be_a(Hash)
