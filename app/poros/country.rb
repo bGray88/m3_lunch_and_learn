@@ -3,6 +3,6 @@ class Country
   attr_reader :name
 
   def initialize(data)
-    binding.pry
+    @name = data.dig(:name, :common)
   end
 end
