@@ -30,4 +30,19 @@ RSpec.describe 'Learning Resources Facade', :vcr do
     expect(video.dig(:snippet, :resourceId)).to have_key(:videoId)
     expect(video.dig(:snippet, :resourceId, :videoId)).to be_a(String)
   end
+
+  it 'can help me test' do
+    WebMock.allow_net_connect!
+    VCR.eject_cassette
+    VCR.turn_off!
+
+    resource = LearningResourceFacade.combined_resources('')
+
+    expect(resource).to be_a(Array)
+    expect(resource.first).to eq({})
+    expect(resource.last).to eq([])
+
+    VCR.turn_on!
+    WebMock.disable_net_connect!
+  end
 end
