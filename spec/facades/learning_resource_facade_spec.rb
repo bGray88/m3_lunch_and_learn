@@ -27,5 +27,7 @@ RSpec.describe 'Learning Resources Facade', :vcr do
     expect(video.dig(:snippet, :title)).to be_a(String)
     expect(video[:snippet]).to have_key(:resourceId)
     expect(video.dig(:snippet, :resourceId)).to be_a(Hash)
+    expect(video.dig(:snippet, :resourceId)).to have_key(:videoId)
+    expect(video.dig(:snippet, :resourceId, :videoId)).to be_a(String)
   end
 end

@@ -1,7 +1,8 @@
 class LearningResourceFacade
-
   def self.combined_resources(country)
-
+    video  = LearningResourceFacade.find_video(country)
+    images = LearningResourceFacade.find_images(country)
+    [video, images]
   end
 
   def self.find_video(country)
