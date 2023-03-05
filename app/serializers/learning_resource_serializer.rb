@@ -6,8 +6,8 @@ class LearningResourceSerializer
         "type": 'learning_resource',
         "attributes": {
           "video":  {
-            title:            video.dig(:snippet, :title),
-            youtube_video_id: video.dig(:snippet, :resourceId, :videoId)
+            "title":            video.dig(:snippet, :title),
+            "youtube_video_id": video.dig(:snippet, :resourceId, :videoId)
           },
           "images": images.map do |image|
             {
