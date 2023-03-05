@@ -113,8 +113,10 @@ end
 VCR.configure do |config|
   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
   config.hook_into :webmock
-  config.filter_sensitive_data('<APP_ID>') { ENV['APP_ID'] }
-  config.filter_sensitive_data('<APP_KEY>') { ENV['APP_KEY'] }
+  config.filter_sensitive_data('<APP_ID>') { ENV['EDAMAM_APP_ID'] }
+  config.filter_sensitive_data('<APP_KEY>') { ENV['EDAMAM_APP_KEY'] }
+  config.filter_sensitive_data('<KEY>') { ENV['YOUTUBE_API_KEY'] }
+  config.filter_sensitive_data('<CLIENT_ID>') { ENV['UNSPLASH_CLIENT_ID'] }
   config.configure_rspec_metadata!
   config.default_cassette_options = { re_record_interval: 259200 }
 end

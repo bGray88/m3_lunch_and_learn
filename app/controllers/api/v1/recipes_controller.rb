@@ -7,7 +7,7 @@ class Api::V1::RecipesController < ApplicationController
     end
     search_result = EdamamService.search_by_name(country)
     raise SearchError.new unless search_result
-    if search_result[:hits].empty? && params[:search]
+    if (search_result[:hits].empty? && params[:search]) || params[:search] == ""
       render json: CommonSerializer.empty
     else
       render json: RecipesSerializer.recipe(search_result, country)
