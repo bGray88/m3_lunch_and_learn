@@ -27,7 +27,7 @@ SimpleCov.add_filter [
     'errors',
     'models/application_record.rb',
     'application_controller',
-    'serializers/error_serializer.rb'
+    'serializers/errors_serializer.rb'
   ]
 
 RSpec.configure do |config|

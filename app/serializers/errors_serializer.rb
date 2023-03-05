@@ -1,4 +1,4 @@
-class ErrorSerializer
+class ErrorsSerializer
   def self.error_json(error)
     {
       "message": error.message,
