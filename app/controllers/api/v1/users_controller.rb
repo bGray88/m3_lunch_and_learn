@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   def create
-    user = User.new(user_params)
+    user = User.new(JSON.parse(request.body.read, symbolize_names: true)[:user])
     user.update(api_key: User.random_key)
     if user.save
       render json: { success: "user has been successfully created" }, status: :created
