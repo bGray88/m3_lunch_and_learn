@@ -1,8 +1,8 @@
 class Api::V1::TouristSightsController < ApplicationController
   def index
-    sights = TouristSightsSerializer.sights(TouristSightFacade.search_sights(params[:country], 500))
-    unless sights.nil? || sights.empty?
-      render json: sights
+    sights = TouristSightFacade.search_sights(params[:country], 500)
+    if sights.present?
+      render json: TouristSightsSerializer.sights(sights)
     else
       render json: CommonsSerializer.empty
     end
