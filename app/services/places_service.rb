@@ -12,7 +12,7 @@ class PlacesService
   def self.search(long, lat, limit = 1)
     JSON.parse(
       conn.get("?categories=tourism.sights"\
-        "&filter=circle:#{long},#{lat},20000"\
+        "&filter=circle:#{long},#{lat},2000"\
         "&limit=#{limit}"\
         "&apiKey=#{ENV['PLACES_API_KEY']}").body, symbolize_names: true
     )
