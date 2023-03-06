@@ -1,12 +1,12 @@
 class Country
 
   attr_reader :name,
-              :longitude,
-              :latitude
+              :capital_longitude,
+              :capital_latitude
 
   def initialize(data)
-    @name      = data.dig(:name, :common)
-    @latitude  = data[:latlng].first
-    @longitude = data[:latlng].last
+    @name              = data.dig(:name, :common)
+    @capital_latitude  = data.dig(:capitalInfo, :latlng).first
+    @capital_longitude = data.dig(:capitalInfo, :latlng).last
   end
 end
