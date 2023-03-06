@@ -6,11 +6,15 @@ class Api::V1::FavoritesController < ApplicationController
   end
 
   def create
-    favorite = Favorite.new(favorite_params)
-    if favorite.save
-      render json: { success: "favorite has been successfully created" }, status: :created
+    if @user
+      favorite = Favorite.new(JSON.parse(request.body.read, symbolize_names: true)[:favorite])
+      if favorite.save
+        render json: { success: "favorite has been successfully created" }, status: :created
+      else
+        raise CreateError.new(details: favorite.errors.full_messages.to_sentence), status: :bad_request
+      end
     else
-      raise CreateError.new(details: favorite.errors.full_messages.to_sentence), status: :bad_request
+      raise SearchError.new, status: :not_found
     end
   end
 
@@ -21,12 +25,12 @@ class Api::V1::FavoritesController < ApplicationController
       :country,
       :recipe_link,
       :recipe_title,
-      :user_id
+      :api_key
     )
   end
 
   def find_user
-    @user = User.find_by(user_id: favorite_params[:user_id])
+    @user = User.find_by(api_key: JSON.parse(request.body.read, symbolize_names: true).dig(:favorite, :api_key))
     unless @user
       raise CreateError.new(details: "unable to locate existing user"), status: :not_found
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_05_173432) do
+ActiveRecord::Schema.define(version: 2023_03_06_023939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,8 +19,7 @@ ActiveRecord::Schema.define(version: 2023_03_05_173432) do
     t.string "country"
     t.string "recipe_link"
     t.string "recipe_title"
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
+    t.string "api_key"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,5 +32,5 @@ ActiveRecord::Schema.define(version: 2023_03_05_173432) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "favorites", "users"
+  add_foreign_key "favorites", "users", column: "api_key", primary_key: "api_key"
 end
