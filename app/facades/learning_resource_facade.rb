@@ -20,6 +20,6 @@ class LearningResourceFacade
   end
 
   def self.find_images(country)
-    UnsplashService.country_images(country)[:results].first(10)
+    UnsplashService.country_images(country)[:results]
   end
 end
