@@ -6,7 +6,7 @@ class RestCountryService
     )
   end
 
-  def self.random_country
-    JSON.parse(conn.get.body, symbolize_names: true).sample
+  def self.countries
+    JSON.parse(conn.get.body, symbolize_names: true)
   end
 end
