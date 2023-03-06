@@ -1,8 +1,13 @@
 class Api::V1::FavoritesController < ApplicationController
-  before_action :find_user, only: [:create, :index]
+  before_action :find_user, only: [:create]
 
   def index
-    render json: Favorites
+    @user = User.find_by(api_key: params[:api_key])
+    if @user
+      render json: FavoritesSerializer.favorites(@user.favorites)
+    else
+      raise SearchError.new, status: :not_found
+    end
   end
 
   def create

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       
       post '/register', to: 'users#create'
       post '/favorites', to: 'favorites#create'
+      get '/favorites', to: 'favorites#index'
     end
   end
 end

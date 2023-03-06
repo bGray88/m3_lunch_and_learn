@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2023_03_06_023939) do
     t.string "recipe_link"
     t.string "recipe_title"
     t.string "api_key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
