@@ -3,7 +3,8 @@ class UnsplashService
     Faraday.new(
       url:       'https://api.unsplash.com/search/photos',
       params: {
-        client_id: ENV['UNSPLASH_CLIENT_ID']
+        client_id: ENV['UNSPLASH_CLIENT_ID'],
+        X_PER_PAGE: 10
       },
       headers: {'Content-Type' => 'application/json'}
     )
