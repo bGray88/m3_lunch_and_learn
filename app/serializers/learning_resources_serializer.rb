@@ -1,4 +1,4 @@
-class LearningResourceSerializer
+class LearningResourcesSerializer
   def self.resource(video, images)
     {
       "data": {

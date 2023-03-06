@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Recipes' do
-  it 'can get recipe based on name parameter passed', :vcr do
+  it 'can get recipe based on search parameter passed', :vcr do
     get api_v1_recipes_path(search: 'thailand')
 
     expect(response).to be_successful

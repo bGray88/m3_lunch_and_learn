@@ -1,4 +1,4 @@
-class CommonSerializer
+class CommonsSerializer
   def self.empty
     {
       "data": []

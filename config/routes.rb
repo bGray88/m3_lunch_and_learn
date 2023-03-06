@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :learning_resources, only: [:index]
       
       post '/register', to: 'users#create'
+      post '/favorites', to: 'favorites#create'
     end
   end
 end
