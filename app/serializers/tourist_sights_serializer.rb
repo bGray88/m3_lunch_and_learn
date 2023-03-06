@@ -1,15 +1,14 @@
 class TouristSightsSerializer
   def self.sights(sights)
-    binding.pry
     {
       "data": sights.map do |sight|
         {
-          "id": null,
+          "id": nil,
           "type": "tourist_sight",
           "attributes": {
               "name": sight.name,
               "address": sight.address,
-              "place_id": "51d28..."
+              "place_id": sight.place_id
           }
         }
       end
