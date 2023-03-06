@@ -55,6 +55,7 @@ RSpec.describe 'Favorites' do
     call = JSON.parse(response.body, symbolize_names: true)
 
     expect(response).to be_successful
+    expect(call.length).to eq(2)
     expect(call).to be_a(Hash)
     expect(call).to have_key(:data)
     expect(call[:data]).to be_a(Array)
