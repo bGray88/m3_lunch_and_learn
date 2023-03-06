@@ -7,8 +7,8 @@ class TouristSightsSerializer
           "id": null,
           "type": "tourist_sight",
           "attributes": {
-              "name": "Tour de l'horloge",
-              "address": "Tour de l'horloge, Allée de l'Horloge, 23200 Aubusson, France",
+              "name": sight.name,
+              "address": sight.address,
               "place_id": "51d28..."
           }
         }
