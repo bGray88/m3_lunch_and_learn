@@ -1,0 +1,3 @@
+class TouristSightFacade
+
+end

@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.geoapify.com/v2/places?apiKey=<APIKEY>&categories=tourism.sights&filter=circle:-87.770231,41.878968,5000&limit=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v2.7.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 06 Mar 2023 17:10:15 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Api-Version:
+      - '1.0'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - accept, accept-language, content-language, access-control-max-age, access-control-allow-headers,
+        access-control-allow-methods, access-control-allow-origin, allow, api-version,
+        cf-ray, content-encoding, content-type, date, expect-ct, server, status, vary,
+        cache-control, etag, last-modified, expires, host, cf-iplatitude, cf-iplongitude,
+        accept-encoding, x-forwarded-for, x-forwarded-proto, cf-visitor, user-agent,
+        cf-connecting-ip, cdn-loop, cf-ipcity, cf-ipcontinent, cf-ipcountry, x-forwarded-port
+      Access-Control-Allow-Methods:
+      - GET, POST, DELETE, OPTIONS, PUT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      Cache-Control:
+      - private, max-age=0, no-cache
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=RDxJnPA3XhmPScb1XA18yYmyuSjTzq5mUxegpDtO2FOw1rkDEb4CxgGjexwtjrwF%2F%2FpsrxpsTEPwjoFL1qB71Nof8JPspTz7NMSirKchWqPMcZMrb%2FF%2Feh5HwsqPu%2FgGZiY%3D"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 7a3c35f8aca32ca4-DFW
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJ0eXBlIjoiRmVhdHVyZUNvbGxlY3Rpb24iLCJmZWF0dXJlcyI6W3sidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7Im5hbWUiOiJFcm5lc3QgSGVtaW5nd2F5IEJpcnRocGxhY2UiLCJjb3VudHJ5IjoiVW5pdGVkIFN0YXRlcyIsImNvdW50cnlfY29kZSI6InVzIiwic3RhdGUiOiJJbGxpbm9pcyIsImNvdW50eSI6IkNvb2sgQ291bnR5IiwiY2l0eSI6Ik9hayBQYXJrIiwicG9zdGNvZGUiOiI2MDMwMiIsImRpc3RyaWN0IjoiRWRtdW5kIEYgQnVydG9uIFJvdyBIb3VzZXMiLCJzdHJlZXQiOiJOb3J0aCBPYWsgUGFyayBBdmVudWUiLCJob3VzZW51bWJlciI6IjMzOSIsImxvbiI6LTg3Ljc5NTAzNjQ3NzMxNTYyLCJsYXQiOjQxLjg5Mjc3NDEsInN0YXRlX2NvZGUiOiJJTCIsImZvcm1hdHRlZCI6IkVybmVzdCBIZW1pbmd3YXkgQmlydGhwbGFjZSwgMzM5IE5vcnRoIE9hayBQYXJrIEF2ZW51ZSwgT2FrIFBhcmssIElMIDYwMzAyLCBVbml0ZWQgU3RhdGVzIG9mIEFtZXJpY2EiLCJhZGRyZXNzX2xpbmUxIjoiRXJuZXN0IEhlbWluZ3dheSBCaXJ0aHBsYWNlIiwiYWRkcmVzc19saW5lMiI6IjMzOSBOb3J0aCBPYWsgUGFyayBBdmVudWUsIE9hayBQYXJrLCBJTCA2MDMwMiwgVW5pdGVkIFN0YXRlcyBvZiBBbWVyaWNhIiwiY2F0ZWdvcmllcyI6WyJidWlsZGluZyIsImJ1aWxkaW5nLmhpc3RvcmljIiwiYnVpbGRpbmcucmVzaWRlbnRpYWwiLCJidWlsZGluZy50b3VyaXNtIiwidG91cmlzbSIsInRvdXJpc20uYXR0cmFjdGlvbiIsInRvdXJpc20uc2lnaHRzIl0sImRldGFpbHMiOlsiZGV0YWlscyIsImRldGFpbHMuYnVpbGRpbmciLCJkZXRhaWxzLndpa2lfYW5kX21lZGlhIl0sImRhdGFzb3VyY2UiOnsic291cmNlbmFtZSI6Im9wZW5zdHJlZXRtYXAiLCJhdHRyaWJ1dGlvbiI6IsKpIE9wZW5TdHJlZXRNYXAgY29udHJpYnV0b3JzIiwibGljZW5zZSI6Ik9wZW4gRGF0YWJhc2UgTGljZW5jZSIsInVybCI6Imh0dHBzOi8vd3d3Lm9wZW5zdHJlZXRtYXAub3JnL2NvcHlyaWdodCIsInJhdyI6eyJuYW1lIjoiRXJuZXN0IEhlbWluZ3dheSBCaXJ0aHBsYWNlIiwib3NtX2lkIjo0Nzc1MDMzMzQsInRvdXJpc20iOiJhdHRyYWN0aW9uIiwid2Vic2l0ZSI6Imh0dHA6Ly93d3cuaGVtaW5nd2F5YmlydGhwbGFjZS5jb20iLCJidWlsZGluZyI6ImhvdXNlIiwiaGlzdG9yaWMiOiJidWlsZGluZyIsIm9zbV90eXBlIjoidyIsIndpa2lkYXRhIjoiUTg1NzQ3Mzg0IiwiYWRkcjpjaXR5IjoiT2FrIFBhcmsiLCJ3aWtpcGVkaWEiOiJlbjpCaXJ0aHBsYWNlIG9mIEVybmVzdCBIZW1pbmd3YXkiLCJhZGRyOnN0YXRlIjoiSUwiLCJhZGRyOnN0cmVldCI6Ik5vcnRoIE9hayBQYXJrIEF2ZW51ZSIsInJvb2Y6bGV2ZWxzIjoxLCJhZGRyOnBvc3Rjb2RlIjo2MDMwMiwib3BlbmluZ19ob3VycyI6IldlLUZyIDEzOjAwLTE3OjAwOyBTYSAxMDowMC0xNzowMDsgU3UgMTM6MDAtMTc6MDAiLCJidWlsZGluZzpsZXZlbHMiOjIsImFkZHI6aG91c2VudW1iZXIiOjMzOX19LCJwbGFjZV9pZCI6IjUxODAyNTRjZGJlMWYyNTVjMDU5MzcwOWI3YWI0NmYyNDQ0MGYwMDEwMmY5MDE2NjFmNzYxYzAwMDAwMDAwOTIwMzFiNDU3MjZlNjU3Mzc0MjA0ODY1NmQ2OTZlNjc3NzYxNzkyMDQyNjk3Mjc0Njg3MDZjNjE2MzY1In0sImdlb21ldHJ5Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbLTg3Ljc5NTAzNTE5NDc0MjAxLDQxLjg5Mjc4MTcwMDQ5MDA0XX19XX0=
+  recorded_at: Mon, 06 Mar 2023 17:10:14 GMT
+recorded_with: VCR 6.1.0
