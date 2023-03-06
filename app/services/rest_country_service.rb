@@ -6,7 +6,7 @@ class RestCountryService
     )
   end
 
-  def self.country
+  def self.countries
     JSON.parse(conn.get.body, symbolize_names: true)
   end
 end
