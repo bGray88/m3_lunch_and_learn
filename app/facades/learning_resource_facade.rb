@@ -1,18 +1,19 @@
 class LearningResourceFacade
   def self.combined_resources(country)
-    video  = self.find_video(country)
-    images = self.find_images(country)
+    video = find_video(country)
+    video ||= {}
+    video = VideosSerializer.video(video) unless video == {}
+    images = find_images(country)
+    images ||= []
+    images = ImagesSerializer.images(images) unless images == []
     [video, images]
   end
 
   def self.find_video(country)
-    if country.nil? || country.empty?
-      return {}
-    else
-      found = self.process_video_pages(country)
-      found ||= {}
-      found
-    end
+    return {} if country.blank?
+    found = process_video_pages(country)
+    found ||= {}
+    found
   end
 
   def self.process_video_pages(country)
