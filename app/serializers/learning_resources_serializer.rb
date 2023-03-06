@@ -5,10 +5,7 @@ class LearningResourcesSerializer
         "id":   nil,
         "type": 'learning_resource',
         "attributes": {
-          "video":  {
-            "title":            video.dig(:snippet, :title),
-            "youtube_video_id": video.dig(:snippet, :resourceId, :videoId)
-          },
+          "video":  video,
           "images": images.map do |image|
             {
               "alt_tag": image[:alt_description],
