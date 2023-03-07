@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Recipes Serializer' do
   it 'returns hash of recipe data formatted with needed data', :vcr do
-    recipe = RecipesSerializer.recipes(EdamamService.search_by_name('thailand'), 'thailand')
+    recipe = RecipeFacade.recipes('thailand')
 
     expect(recipe).to have_key(:data)
     expect(recipe[:data].first).to have_key(:id)

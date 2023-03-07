@@ -1,12 +1,12 @@
 class UnsplashService
   def self.conn
     Faraday.new(
-      url:       'https://api.unsplash.com/search/photos',
+      url:    'https://api.unsplash.com/photos/random',
       params: {
         client_id: ENV['UNSPLASH_CLIENT_ID'],
-        X_PER_PAGE: 10
+        count:     10
       },
-      headers: {'Content-Type' => 'application/json'}
+      headers: {'Content-Type' => 'application/json', 'Accept-Version' => 'v1' }
     )
   end
 

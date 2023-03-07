@@ -1,15 +1,15 @@
 class RecipesSerializer
   def self.recipes(recipes, country)
     {
-      "data": recipes[:hits].map do |recipe|
+      "data": recipes.map do |recipe|
         {
           "id":   nil,
           "type": "recipe",
           "attributes": {
-            "title":   recipe.dig(:recipe, :label),
-            "url":     recipe.dig(:recipe, :url),
+            "title":   recipe.title,
+            "url":     recipe.url,
             "country": country,
-            "image":   recipe.dig(:recipe, :image)
+            "image":   recipe.image
           }
         }
       end
