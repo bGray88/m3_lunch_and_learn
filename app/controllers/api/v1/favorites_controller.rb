@@ -22,15 +22,6 @@ class Api::V1::FavoritesController < ApplicationController
 
   private
 
-  def favorite_params
-    params.require(:favorite).permit(
-      :country,
-      :recipe_link,
-      :recipe_title,
-      :api_key
-    )
-  end
-
   def find_user
     @user = User.find_by(api_key: JSON.parse(request.body.read, symbolize_names: true).dig(:favorite, :api_key))
   end
