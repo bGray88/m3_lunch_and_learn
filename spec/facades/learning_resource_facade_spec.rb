@@ -6,29 +6,17 @@ RSpec.describe 'Learning Resources Facade', :vcr do
 
     expect(images.length).to eq(10)
     expect(images).to be_a(Array)
-    expect(images[0]).to have_key(:id)
-    expect(images[0]).to be_a(Hash)
-    expect(images.dig(0, :id)).to be_a(String)
-    expect(images[0]).to have_key(:urls)
-    expect(images.dig(0, :urls)).to be_a(Hash)
-    expect(images.dig(0, :urls)).to have_key(:regular)
-    expect(images.dig(0, :urls, :regular)).to be_a(String)
+    expect(images.first).to be_a(Image)
+    expect(images.first.alt_tag).to be_a(String)
+    expect(images.first.url).to be_a(String)
   end
 
   it 'can return a video based on a country name', :vcr do
     video = LearningResourceFacade.find_video('kuwait')
 
-    expect(video).to be_a(Hash)
-    expect(video).to have_key(:id)
-    expect(video[:id]).to be_a(String)
-    expect(video).to have_key(:snippet)
-    expect(video[:snippet]).to be_a(Hash)
-    expect(video[:snippet]).to have_key(:title)
-    expect(video.dig(:snippet, :title)).to be_a(String)
-    expect(video[:snippet]).to have_key(:resourceId)
-    expect(video.dig(:snippet, :resourceId)).to be_a(Hash)
-    expect(video.dig(:snippet, :resourceId)).to have_key(:videoId)
-    expect(video.dig(:snippet, :resourceId, :videoId)).to be_a(String)
+    expect(video).to be_a(Video)
+    expect(video.title).to be_a(String)
+    expect(video.youtube_video_id).to be_a(String)
   end
 
   it 'can help me test' do

@@ -12,8 +12,8 @@ class LearningResourceFacade
   def self.find_video(country)
     return {} if country.blank?
     found = process_video_pages(country)
-    found ||= {}
-    found
+    return {} unless found
+    Video.new(found)
   end
 
   def self.process_video_pages(country)
@@ -28,6 +28,9 @@ class LearningResourceFacade
   end
 
   def self.find_images(country)
-    UnsplashService.country_images(country)[:results]
+    return [] if country.blank?
+    found = UnsplashService.country_images(country)
+    return [] if found.is_a?(Hash) && found[:errors]
+    found.map { |image| Image.new(image) }
   end
 end
