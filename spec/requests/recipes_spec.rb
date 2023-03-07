@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Recipes' do
+RSpec.describe 'Recipes API' do
   describe '#index' do
     it 'can get recipe based on search parameter passed', :vcr do
       get api_v1_recipes_path(country: 'thailand')
@@ -27,7 +27,7 @@ RSpec.describe 'Recipes' do
       expect(JSON.parse(response.body, symbolize_names: true)).to eq({ data: [] })
     end
 
-    it 'can get recipe with no search parameter passed', :vcr do
+    it 'can get recipe with no search parameter passed', vcr: {record: :new_episodes} do
       get api_v1_recipes_path
 
       expect(response).to be_successful

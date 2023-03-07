@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Learning Resources Facade' do
+RSpec.describe 'Learning Resource Facade' do
   it 'can return a collection of 10 images based on a country name', :vcr do
     images = LearningResourceFacade.find_images('thailand')
 
@@ -11,7 +11,7 @@ RSpec.describe 'Learning Resources Facade' do
     expect(images.first.url).to be_a(String)
   end
 
-  it 'can return a video based on a country name', :vcr do
+  it 'can return a video based on a country name', vcr: {record: :new_episodes} do
     video = LearningResourceFacade.find_video('kuwait')
 
     expect(video).to be_a(Video)
@@ -19,7 +19,7 @@ RSpec.describe 'Learning Resources Facade' do
     expect(video.youtube_video_id).to be_a(String)
   end
 
-  it 'can return resources with combined video and image attributes', :vcr do
+  it 'can return resources with combined video and image attributes', vcr: {record: :new_episodes} do
     resource = LearningResourceFacade.combined_resources('laos')
 
     expect(resource).to be_a(Hash)
@@ -45,7 +45,7 @@ RSpec.describe 'Learning Resources Facade' do
     expect(resource[:video]).to_not have_key(:title)
     expect(resource[:video]).to_not have_key(:youtube_video_id)
     expect(resource[:images]).to be_a(Array)
-    expect(images.length).to eq(0)
+    expect(resource[:images].length).to eq(0)
   end
 
   it 'can return empty json if empty value passed', :vcr do
@@ -57,10 +57,10 @@ RSpec.describe 'Learning Resources Facade' do
     expect(resource[:video]).to_not have_key(:title)
     expect(resource[:video]).to_not have_key(:youtube_video_id)
     expect(resource[:images]).to be_a(Array)
-    expect(images.length).to eq(0)
+    expect(resource[:images].length).to eq(0)
   end
 
-  it 'can return process all pages for video service and return single record', :vcr do
+  it 'can process all pages for video service and return single record', vcr: {record: :new_episodes} do
     resource = LearningResourceFacade.process_video_pages('gambia')
 
     expect(resource).to be_a(Hash)

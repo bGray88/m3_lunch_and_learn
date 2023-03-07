@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'User' do
+RSpec.describe 'User API' do
   before(:each) do
     @user1 = {
       name: Faker::Name.name,

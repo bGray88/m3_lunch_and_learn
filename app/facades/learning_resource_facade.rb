@@ -23,14 +23,14 @@ class LearningResourceFacade
     loop do
       current_page = pages.sample
       pages.delete(current_page)
-      found = YoutubeService.list_videos(current_page)[:items].find { |video| video.dig(:snippet, :title).downcase.include?(country) }
+      found = VideosService.list_videos(current_page)[:items].find { |video| video.dig(:snippet, :title).downcase.include?(country) }
       return found if found || pages.empty?
     end
   end
 
   def self.find_images(country)
     return [] if country.blank?
-    found = UnsplashService.country_images(country)
+    found = ImagesService.country_images(country)
     return [] if found.is_a?(Hash) && found[:errors]
     found.map { |image| Image.new(image) }
   end

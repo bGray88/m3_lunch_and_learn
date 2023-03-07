@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Tourist Sights Facade', :vcr do
+RSpec.describe 'Tourist Sight Facade', :vcr do
   it 'will return formatted places depending upon latlng argument passed' do
     places = TouristSightFacade.search_sights("Gambia", 2)
 
