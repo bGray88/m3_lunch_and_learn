@@ -2,11 +2,13 @@ class LearningResourceFacade
   def self.combined_resources(country)
     video = find_video(country)
     video ||= {}
-    video = VideosSerializer.video(video) unless video == {}
-    images = find_images(country)
+    unless video == {}
+      video = VideosSerializer.video(video)
+      images = find_images(country)
+    end
     images ||= []
     images = ImagesSerializer.images(images) unless images == []
-    [video, images]
+    { video: video, images: images }
   end
 
   def self.find_video(country)
@@ -18,7 +20,6 @@ class LearningResourceFacade
 
   def self.process_video_pages(country)
     pages = ['EAAaATA', 'EAAaBlBUOkNESQ', 'EAAaBlBUOkNHUQ', 'EAAaB1BUOkNKWUI']
-    found = {}
     loop do
       current_page = pages.sample
       pages.delete(current_page)

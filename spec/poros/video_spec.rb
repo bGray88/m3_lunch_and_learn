@@ -6,7 +6,7 @@ RSpec.describe 'Video' do
       snippet: {
         title:            "Some Place Downtown Laos",
         resourceId: {
-          videoId: "78asdyf8ags7gdf8omdbfjvkd"
+          videoId: User.random_key
         }
       }
     )
@@ -15,6 +15,6 @@ RSpec.describe 'Video' do
     expect(video.title).to be_a(String)
     expect(video.title).to eq("Some Place Downtown Laos")
     expect(video.youtube_video_id).to be_a(String)
-    expect(video.youtube_video_id).to eq("78asdyf8ags7gdf8omdbfjvkd")
+    expect(video.youtube_video_id.length).to eq(32)
   end
 end

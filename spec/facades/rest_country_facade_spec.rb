@@ -7,7 +7,8 @@ RSpec.describe 'Rest Country Facade' do
 
     expect(country1).to be_a(Country)
     expect(country1.name).to be_a(String)
-    expect(country2).to_not eq(country1)
+    expect(country1.capital_latitude).to be_a(String)
+    expect(country1.capital_longitude).to be_a(String)
   end
 
   it 'can return a specific country', :vcr do
@@ -16,5 +17,7 @@ RSpec.describe 'Rest Country Facade' do
     expect(country1).to be_a(Country)
     expect(country1.name).to be_a(String)
     expect(country1.name).to eq("Gambia")
+    expect(country1.capital_latitude).to be_a(String)
+    expect(country1.capital_longitude).to be_a(String)
   end
 end

@@ -6,7 +6,7 @@ RSpec.describe 'Place' do
       properties: {
         name: "Brazil",
         address_line2: "Some Place Downtown",
-        place_id: "lashdflhaldhflahs"
+        place_id: User.random_key
       }
     )
 
@@ -14,6 +14,6 @@ RSpec.describe 'Place' do
     expect(place.name).to be_a(String)
     expect(place.address).to be_a(String)
     expect(place.place_id).to be_a(String)
-    expect(place.place_id.length).to eq(17)
+    expect(place.place_id.length).to eq(32)
   end
 end
