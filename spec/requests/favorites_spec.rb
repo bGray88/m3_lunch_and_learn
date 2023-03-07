@@ -29,7 +29,7 @@ RSpec.describe 'Favorites API' do
       expect(call).to eq(success: "favorite has been successfully created")
     end
 
-    it 'will return errors if post request unsuccessful' do
+    it 'will return errors if user validation fails' do
       payload = JSON.generate(
         favorite: {
           country: 'thailand',
@@ -45,6 +45,23 @@ RSpec.describe 'Favorites API' do
 
       expect(response).to_not be_successful
       expect(call).to include(errors: [{ details: "unable to locate existing user" }])
+    end
+
+    it 'will return errors if favorite attributes missing' do
+      payload = JSON.generate(
+        favorite: {
+          country: 'thailand',
+          recipe_title: 'Chicken Paprikash',
+          api_key: @user1.api_key
+        }
+      )
+
+      post api_v1_favorites_path, headers: @headers, params: payload
+
+      call = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to_not be_successful
+      expect(call).to include(errors: [{ details: "Recipe link can't be blank" }])
     end
   end
 
@@ -78,6 +95,15 @@ RSpec.describe 'Favorites API' do
 
       expect(response).to be_successful
       expect(call).to eq({ data: [] })
+    end
+
+    it 'will return an error message if user not present' do
+      get api_v1_favorites_path(api_key: "kdfhlsduy9oysdoou"), headers: @headers
+
+      call = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to_not be_successful
+      expect(call).to include(message: "{:status=>:not_found}")
     end
   end
 end
