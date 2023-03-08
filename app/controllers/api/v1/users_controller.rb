@@ -9,8 +9,4 @@ class Api::V1::UsersController < ApplicationController
       raise CreateError.new(details: user.errors.full_messages.to_sentence), status: :bad_request
     end
   end
-
-  def show
-    render json: User.find_by(id: params[:id])
-  end
 end

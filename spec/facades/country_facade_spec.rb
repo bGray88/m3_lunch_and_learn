@@ -23,9 +23,8 @@ RSpec.describe 'Country Facade' do
   end
 
   it 'can return error object if country is not found in db', :vcr do
-    invalid_country = CountryFacade.country_validate('ksdhlfauds')
-
-    expect(invalid_country).to be_a(SearchError)
-    expect(invalid_country.details).to eq("invalid country")
+    expect{
+      CountryFacade.country_validate('ksdhlfauds')
+    }.to raise_error(SearchError) { |error| expect(error.details).to eq("invalid country") }
   end
 end

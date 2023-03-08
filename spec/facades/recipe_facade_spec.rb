@@ -43,9 +43,8 @@ RSpec.describe 'Recipe Facade' do
   end
 
   it 'can return error json if invalid country name passed in', :vcr do
-    recipes = RecipeFacade.recipes("lhsldfiuahlsid")
-
-    expect(recipes).to be_a(SearchError)
-    expect(recipes.details).to eq("invalid country")
+    expect{
+      RecipeFacade.recipes("lhsldfiuahlsid")
+    }.to raise_error(SearchError) { |error| expect(error.details).to eq("invalid country") }
   end
 end
