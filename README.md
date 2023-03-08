@@ -150,6 +150,12 @@
     - POST favorites
       - Returns a status message and joins user to favorite
       ![alt text](app/assets/images/readme_favorites_post.png)
+  
+  - /favorites
+  - Favorites for user integration with resources
+    - GET favorites
+      - Returns a list of user favorites
+      ![alt text](app/assets/images/readme_favorites_get.png)
 
   <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
