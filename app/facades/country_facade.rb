@@ -11,4 +11,8 @@ class CountryFacade
       Country.new(found_country) if found_country
     end
   end
+
+  def self.country_validate(country)
+    SearchError.new(details: "invalid country") unless specific_country(country)
+  end
 end

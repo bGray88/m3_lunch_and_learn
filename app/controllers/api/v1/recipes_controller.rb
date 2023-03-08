@@ -1,6 +1,10 @@
 class Api::V1::RecipesController < ApplicationController
   def index
-    search_result = RecipeFacade.recipes(params[:country])
-    render json: search_result
+    recipes_result = RecipeFacade.recipes(params[:country])
+    if recipes_result.is_a?(SearchError)
+      raise recipes_result, status: :not_found
+    else
+      render json: recipes_result
+    end
   end
 end

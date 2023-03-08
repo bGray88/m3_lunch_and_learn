@@ -1,5 +1,7 @@
 class LearningResourceFacade
   def self.combined_resources(country)
+    valid_country = CountryFacade.country_validate(country) if country.present?
+    return valid_country if valid_country.is_a?(SearchError)
     video = find_video(country)
     video ||= {}
     unless video == {}
@@ -8,7 +10,7 @@ class LearningResourceFacade
     end
     images ||= []
     images = ImagesSerializer.images(images) unless images == []
-    { video: video, images: images }
+    LearningResourcesSerializer.resource(video, images)
   end
 
   def self.find_video(country)

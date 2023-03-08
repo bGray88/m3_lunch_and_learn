@@ -39,12 +39,10 @@ RSpec.describe 'Favorites API' do
         }
       )
 
-      post api_v1_favorites_path, headers: @headers, params: payload
-
-      call = JSON.parse(response.body, symbolize_names: true)
-
-      expect(response).to_not be_successful
-      expect(call).to include(errors: [{ details: "unable to locate existing user" }])
+      expect{
+        post api_v1_favorites_path, headers: @headers, params: payload
+        JSON.parse(response.body, symbolize_names: true)
+      }.to raise_error(CreateError) { |error| expect(error.details).to eq("unable to locate existing user") }
     end
 
     it 'will return errors if favorite attributes missing' do
@@ -56,12 +54,10 @@ RSpec.describe 'Favorites API' do
         }
       )
 
-      post api_v1_favorites_path, headers: @headers, params: payload
-
-      call = JSON.parse(response.body, symbolize_names: true)
-
-      expect(response).to_not be_successful
-      expect(call).to include(errors: [{ details: "Recipe link can't be blank" }])
+      expect{
+        post api_v1_favorites_path, headers: @headers, params: payload
+        JSON.parse(response.body, symbolize_names: true)
+      }.to raise_error(CreateError) { |error| expect(error.details).to eq("Recipe link can't be blank") }
     end
   end
 
@@ -98,12 +94,10 @@ RSpec.describe 'Favorites API' do
     end
 
     it 'will return an error message if user not present' do
-      get api_v1_favorites_path(api_key: "kdfhlsduy9oysdoou"), headers: @headers
-
-      call = JSON.parse(response.body, symbolize_names: true)
-
-      expect(response).to_not be_successful
-      expect(call).to include(message: "{:status=>:not_found}")
+      expect{
+        get api_v1_favorites_path(api_key: "kdfhlsduy9oysdoou"), headers: @headers
+        JSON.parse(response.body, symbolize_names: true)
+      }.to raise_error(SearchError) { |error| expect(error.details).to eq("user not found") }
     end
   end
 end

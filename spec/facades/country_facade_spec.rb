@@ -21,4 +21,11 @@ RSpec.describe 'Country Facade' do
     expect(country1.capital_latitude).to be_a(Float)
     expect(country1.capital_longitude).to be_a(Float)
   end
+
+  it 'can return error object if country is not found in db', :vcr do
+    invalid_country = CountryFacade.country_validate('ksdhlfauds')
+
+    expect(invalid_country).to be_a(SearchError)
+    expect(invalid_country.details).to eq("invalid country")
+  end
 end
