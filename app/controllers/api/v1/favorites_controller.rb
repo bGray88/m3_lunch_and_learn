@@ -6,7 +6,7 @@ class Api::V1::FavoritesController < ApplicationController
     if @user
       render json: FavoritesSerializer.favorites(@user.favorites)
     else
-      raise SearchError.new, status: :not_found
+      raise SearchError.new(details: "user not found"), status: :not_found
     end
   end
 

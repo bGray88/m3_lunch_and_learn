@@ -39,11 +39,9 @@ RSpec.describe 'User API' do
 
       expect(response).to be_successful
 
-      payload = JSON.generate(user: @user1)
-
-      post api_v1_register_path, headers: @headers, params: payload
-
-      expect(response).to_not be_successful
+      expect{
+        post api_v1_register_path, headers: @headers, params: payload
+      }.to raise_error(CreateError) { |error| expect(error.details).to eq('Email has already been taken') }
     end
 
     it 'has a unique api key for each user' do

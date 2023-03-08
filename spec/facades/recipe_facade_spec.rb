@@ -16,7 +16,7 @@ RSpec.describe 'Recipe Facade' do
     expect(recipes.dig(:data, 0, :attributes, :image)).to be_a(String)
   end
 
-  it 'can return recipes from a random country', vcr: {record: :new_episodes} do
+  it 'can return recipes from a random country if empty country params', vcr: {record: :new_episodes} do
     recipes = RecipeFacade.recipes(nil)
 
     expect(recipes[:data]).to be_a(Array)
@@ -36,11 +36,16 @@ RSpec.describe 'Recipe Facade' do
     expect(recipes.dig(:data, 0, :attributes, :image)).to be_a(String)
   end
 
-  it 'can return empty json if empty string passed in', :vcr do
+  it 'can return error json if empty string passed in', :vcr do
     recipes = RecipeFacade.recipes("")
 
-    expect(recipes[:data]).to be_a(Array)
-    expect(recipes[:data]).to eq([])
-    expect(recipes[:data].length).to eq(0)
+    expect(recipes).to eq({ data: [] })
+  end
+
+  it 'can return error json if invalid country name passed in', :vcr do
+    recipes = RecipeFacade.recipes("lhsldfiuahlsid")
+
+    expect(recipes).to be_a(SearchError)
+    expect(recipes.details).to eq("invalid country")
   end
 end
