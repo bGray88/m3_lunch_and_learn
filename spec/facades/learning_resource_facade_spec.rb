@@ -40,7 +40,7 @@ RSpec.describe 'Learning Resource Facade' do
 
     resource_video = resource.dig(:attributes, :video)
     resource_images = resource.dig(:attributes, :images)
-    
+
     expect(resource_video).to be_a(Hash)
     expect(resource_video).to have_key(:title)
     expect(resource_video[:title]).to be_a(String)
@@ -56,10 +56,9 @@ RSpec.describe 'Learning Resource Facade' do
   end
 
   it 'can return error json if invalid country name passed in', :vcr do
-    resource = LearningResourceFacade.combined_resources("lhsldfiuahlsid")
-
-    expect(resource).to be_a(SearchError)
-    expect(resource.details).to eq("invalid country")
+    expect{
+      LearningResourceFacade.combined_resources("lhsldfiuahlsid")
+    }.to raise_error(SearchError) { |error| expect(error.details).to eq("invalid country") }
   end
 
   it 'can return empty json if empty string passed', :vcr do

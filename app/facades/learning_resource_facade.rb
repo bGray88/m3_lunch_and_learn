@@ -1,7 +1,6 @@
 class LearningResourceFacade
   def self.combined_resources(country)
-    valid_country = CountryFacade.country_validate(country) if country.present?
-    return valid_country if valid_country.is_a?(SearchError)
+    CountryFacade.country_validate(country) if country.present?
     video = find_video(country)
     video ||= {}
     unless video == {}

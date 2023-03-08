@@ -13,6 +13,6 @@ class CountryFacade
   end
 
   def self.country_validate(country)
-    SearchError.new(details: "invalid country") unless specific_country(country)
+    raise SearchError.new(details: "invalid country"), status: :not_found unless specific_country(country)
   end
 end
